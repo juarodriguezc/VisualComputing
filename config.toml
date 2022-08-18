@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "Showcase Template"
 theme = 'book'
 
-
 # Book configuration
 disablePathToLower = true
 enableGitInfo = true
