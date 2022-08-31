@@ -159,8 +159,9 @@ Adapted from [here](https://p5js.org/examples/dom-video-canvas.html). Don't forg
 
   p5.setup = function() {
     p5.createCanvas(710, 400);
+
     // specify multiple formats for different browsers
-    fingers = p5.createVideo(['/showcase/sketches/fingers.mov', '/showcase/sketches/fingers.webm']);
+    fingers = p5.createVideo(['/VisualComputing/sketches/fingers.mov', '/VisualComputing/sketches/fingers.webm']);
     fingers.hide(); // by default video shows up in separate dom
                     // element. hide it and draw it to the canvas instead    
   };
@@ -188,7 +189,7 @@ Note that `p5` should be the name to be used for the sketch object variable.
   p5.setup = function() {
     p5.createCanvas(710, 400);
     // specify multiple formats for different browsers
-    fingers = p5.createVideo(['/showcase/sketches/fingers.mov', '/showcase/sketches/fingers.webm']);
+    fingers = p5.createVideo(['/VisualComputing/sketches/fingers.mov', '/VisualComputing/sketches/fingers.webm']);
     fingers.hide(); // by default video shows up in separate dom
                     // element. hide it and draw it to the canvas instead    
   };
