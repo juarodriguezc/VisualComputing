@@ -9,9 +9,9 @@ Welcome to the [gohugo](https://gohugo.io/) template to create rich content [aca
 
 ## Authors
 
-Santiago Leonardo Mejía 
+Santiago Leonardo Delgado Mejía 
     
-Juan Sebastián Rodríguez
+Juan Sebastián Rodríguez Castellanos
 
 ## Hacking
 
