@@ -21,6 +21,10 @@ Look at this [brief explanation](https://p5js.org/examples/color-relativity.html
 
 {{< p5-iframe sketch="/VisualComputing/sketches/illusions/1/stepfeet.js" width="725" height="500" >}}
 
+{{< p5-iframe sketch="/VisualComputing/sketches/illusions/2/histogram.js" width="725" height="500" >}}
+
+{{< p5-iframe sketch="/VisualComputing/sketches/illusions/2/test.js" width="725" height="500" >}}
+
 ## Third party libraries
 
 Example adapted from [p5.EasyCam](https://github.com/freshfork/p5.EasyCam/blob/master/examples/QuickStart/QuickStart.js).

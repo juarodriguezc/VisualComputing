@@ -46,14 +46,19 @@ function setup() {
   chbMove = createCheckbox('Move', moveR);
   chbMove.position(width-menuWidth+18, 330);
   chbMove.changed(moveEvent);
+  chbMove.style('font-family: Arial; font-size: 16px;');
   //Create checkbox for show bars
   chbBars = createCheckbox('Show bars', showBars);
   chbBars.position(width-menuWidth+18, 350);
   chbBars.changed(barsEvent);
+  chbBars.style('font-family: Arial; font-size: 16px;');
+
   //Create checkbox for show guide
   chbGuide = createCheckbox('Show guide', showGuide);
   chbGuide.position(width-menuWidth+18, 370);
   chbGuide.changed(guideEvent);
+  chbGuide.style('font-family: Arial; font-size: 16px;');
+
 }
 
 function draw() {
