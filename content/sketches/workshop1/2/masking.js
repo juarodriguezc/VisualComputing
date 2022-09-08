@@ -163,10 +163,9 @@ function imageSelEvent(){
   aspectRatio = img.width / img.height;
 }
 
-async function handleFile(file) {
+function handleFile(file) {
   if (file.type === 'image') {
     img = (createImg(file.data, ''));
-    await myPromise;
     img.hide();
     aspectRatio = isNaN(img.width / img.height)?2:img.width / img.height;
         
