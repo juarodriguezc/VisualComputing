@@ -42,6 +42,7 @@ class Histogram {
     let res = this.getMinMaxData(this.data, this._nData);
     this._minVal = res.min;
     this._maxVal = res.max;
+    
     //Calculate the frequency
     this._frequency = this.getFrequency(this.binWidth);
     this._freqLen = this._frequency[0].length;
@@ -66,9 +67,9 @@ class Histogram {
     //Draw the background of the histogram
     fill("#F9F9F9");
     rect(this.x, this.y, this.width, this.height);
-    pop();
     //Draw the histogram canva
     rect(this._xCanvas, this._yCanvas, this._widthCanvas, this._heightCanvas );
+    pop();
     //Draw the title if is defined
     if(this.title !== undefined){
       push();
@@ -139,7 +140,7 @@ class Histogram {
           fill(this.barColDef[i]);
           for(let j = 0; j < this._freqLen; j++){
             //Make it shorter
-            rect(this._xCanvas + this._canvasPadding + this._binW*j, this._yCanvas + this._heightCanvas -0.5, this._binW, -(this._heightDCanvas + (this._yCanvas + this._canvasPadding - this.getPosY(this._frequency[i][j]))));
+            rect(this._xCanvas + this._canvasPadding + this._binW*j, this._yCanvas + this._heightCanvas -0.5, Math.floor(this._binW), -(this._heightDCanvas + (this._yCanvas + this._canvasPadding - this.getPosY(this._frequency[i][j]))));
           }
         }
       }
@@ -224,5 +225,3 @@ class Histogram {
   
   
 }
-
-
