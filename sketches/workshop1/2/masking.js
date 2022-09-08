@@ -175,10 +175,6 @@ async function handleFile(file) {
   }
 }
 
-var myPromise = new Promise(function(resolve, reject){
-	// resolve the promise after 1 second
-  setTimeout(resolve, 1000)
-});
 
 function handleApply(){
   
