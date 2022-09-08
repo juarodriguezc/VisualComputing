@@ -1,5 +1,6 @@
 let path = "/VisualComputing/sketches/workshop1/2/";
 
+
 //Global variables
 let dWidth;
 
@@ -162,15 +163,22 @@ function imageSelEvent(){
   aspectRatio = img.width / img.height;
 }
 
-function handleFile(file) {
+async function handleFile(file) {
   if (file.type === 'image') {
     img = (createImg(file.data, ''));
-    aspectRatio = img.width / img.height;
+    await myPromise;
     img.hide();
+    aspectRatio = isNaN(img.width / img.height)?2:img.width / img.height;
+        
   } else {
     img = null;
   }
 }
+
+var myPromise = new Promise(function(resolve, reject){
+	// resolve the promise after 1 second
+  setTimeout(resolve, 1000)
+});
 
 function handleApply(){
   
