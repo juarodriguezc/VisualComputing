@@ -1,9 +1,17 @@
 # Illusions 
 
-Las asdasjdaskd nknskdjankdjnaksdja sdka dkajd akjdanksdjanksdj
 
 
 ## Stepping feet Motion Illusion
+
+### Teoría
+En esta ilusión podemos observar que dos *carros* se mueve a través de una rejilla y diese la impresión de que cada uno avanza en momentos distintos. Sin embargo, una vez se activa la ayuda, se puede ver que realmente avanzan al tiempo.
+Esta ilusión se genera gracias a que el color de los carros se mezcla con la rejilla presente dando así la sensación que los carros se detienen cuando alcanzan una varilla de la rejilla; sin embargo si se juega con el contraste de los colores de este montaje se puede ver cómo la ilusión va perdiendo efecto.
+Para más información puede consultar las siguientes fuentes:
+- [A review of the footsteps illusion](https://journalofillusion.net/index.php/joi/article/view/5612)
+- [Moving objects appear to slow down at low contrasts.](http://anstislab.ucsd.edu)
+- [Perceived rate of movement depends on contrast](https://www.sciencedirect.com/science/article/abs/pii/0042698982901535)
+
 
 {{< details "Stepping feet" >}}
 ```js
@@ -173,8 +181,14 @@ function guideEvent(){
 
 {{< p5-iframe sketch="/VisualComputing/sketches/workshop1/1/stepfeet.js" width="725" height="500" >}}
 
-
-## Müller-Lyer Illusion
+## Teoría Müller-Lyer Illusion
+Esta es una ilusión óptica que ubicar el centro de la linea horizontal arrastrando la "flecha del medio". Está contemplado dentro del campo de *Consistencia de Tamaño*.
+Tienes este nombre pues fue descubierta por Muller-Lyer en 1889. Se atribulle su comportamiento pues la dirección de las flechas genera una perspectiva de amplitud o de encapsulamiento que engaña fácilemente a nuestro ojo.
+Para más referencias puede consultar a:
+- [Michelle Bach](https://michaelbach.de/ot/sze-muelue/index.html)
+- [Müller-Lyer FC](http://www.psy.ritsumei.ac.jp/~akitaoka/ML1889Fe.html)
+- [Decrement of Visual and Haptic Müller-lyer Illusion on Repeated Trials: A Study of Crossmodal Transfer](https://journals.sagepub.com/doi/10.1080/17470216308416563)
+## 
 
 {{< details "Müller-Lyer" >}}
 ```js

@@ -1,26 +1,27 @@
-let path = "/VisualComputing/sketches/workshop1/2/";
+let path = "/VisualComputing/sketches/workshop1/2/img/";
 
 //Global variables
 let dWidth;
 
 
 let kernels = {
-  sobelo: [1,2,3,4,5,6,7,8,9],
-  test2: [9,8,7,6,5,4,3,2,1],
-  
+  outline: [-1,-1,-1,-1,8,-1,-1,-1,-1],
+  emboss: [-2,-1,0,-1,1,1,0,1,2],
+  sharpen: [0,-1,0,-1, 5,-1, 0,-1,0],
 }
-let selKernel = kernels.sobelo;
+let selKernel = kernels.outline;
 
 let imagesPath = {
-  mandrill: [0, path+"img/mandrill.png"],
-  sunset: [1, path+"img/sunset.jpg"],
-  landscape: [2, path+"img/landscape.jpg"],
-  astronaut: [3, path+"img/astronaut.jpg"],
+  mandrill: [0, path+"mandrill.png"],
+  sunset: [1, path+"sunset.jpg"],
+  landscape: [2, path+"landscape.jpg"],
+  astronaut: [3, path+"astronaut.jpg"],
 }
   
   
 let selImage = imagesPath.mandrill;
 let img;
+let imgKernel;
 let aspectRatio = 0;
 
 let images = []
@@ -47,7 +48,11 @@ function setup() {
   for(let image in imagesPath){
     images[imagesPath[image][0]] = loadImage(imagesPath[image][1]);
   }
+  for(let image in imagesPath){
+    images[imagesPath[image][0]+"2"] = loadImage(imagesPath[image][1]);
+  }
   img = images[selImage[0]];
+  imgKernel = images[selImage[0]];
   aspectRatio = img.width / img.height;
   imageMode(CENTER);
 }
@@ -58,10 +63,12 @@ function draw() {
     if(img.width != 0 && img.height != 0 && cImgLoad == 0){
       aspectRatio = img.width / img.height;
       cImgLoad++;
+      imgKernel = img;
     }
+    //imgKernel.updatePixels();
     //img.resize(0, (height-50) / 2);
     image(img,dWidth / 2, 5 * height /20, ((height-50) / 2) * aspectRatio, (height-50) / 2);
-    image(img,dWidth / 2, 15 * height /20, ((height-50) / 2) * aspectRatio, (height-50) / 2);
+    image(imgKernel,dWidth / 2, 15 * height /20, ((height-50) / 2) * aspectRatio, (height-50) / 2);
   }
   drawMenu("#6674C8");
 }
@@ -69,7 +76,7 @@ function draw() {
 
 function drawMenuInputs(){
   
-
+  
   //Botón para aplicar el filtro
   btApply = createButton('Aplicar');
   btApply.position(dWidth + 25, 250);
@@ -163,6 +170,7 @@ function kernelSelEvent(){
 function imageSelEvent(){
   selImage = imagesPath[selectImg.value()];
   img = images[selImage[0]];
+  imgKernel = img;
   aspectRatio = img.width / img.height;
   cImgLoad = -1;
 }
@@ -174,6 +182,7 @@ function handleFile(file) {
     cImgLoad = 0;
     
     selectImg.selected("Personalizada");
+    images["Personalizada"] = (createImg(file.data, ''));
     
   } else {
     img = null;
@@ -182,5 +191,30 @@ function handleFile(file) {
 
 
 function handleApply(){
+  img.loadPixels();
+  imgKernel = images[imagesPath[selectImg.value()][0]+"2"]
+  imgKernel.loadPixels();
+  let krn = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+  for(var i=0; i < 9; i++){
+    krn[int(i/3)][i%3] = int(kernelInp[i].value())
+  }
+
+  for(var i=1; i < img.width; ++i){
+    for(var j=1; j<img.height; ++j){
+      let px = img.get(i, j);
+      var sum = [0,0,0];
+      for(var k=-1; k<=1; ++k){
+        for(var l=-1; l<=1; ++l){
+          let npx = img.get(i+k, j+l);
+          sum[0] += npx[0]*krn[k+1][l+1]
+          sum[1] += npx[1]*krn[k+1][l+1]
+          sum[2] += npx[2]*krn[k+1][l+1]          
+        }
+      }
+      imgKernel.set(i, j, color(sum[0], sum[1], sum[2]));
+    }
+  }
+  
+  imgKernel.updatePixels();
   
 }
