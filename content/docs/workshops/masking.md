@@ -1,9 +1,15 @@
 # Visual masking 
 
-Las asdasjdaskd nknskdjankdjnaksdja sdka dkajd akjdanksdjanksdj
+Incluir teoría acerca de visual masking
+
+
 
 
 ## Image kernels
+
+### Teoría
+
+### Aplicación
 
 {{< details "Masking" >}}
 ```js
@@ -174,6 +180,11 @@ function guideEvent(){
 
 
 ## Image Histogram
+
+
+### Teoría
+
+### Aplicación
 
 {{< details "Histogram class" >}}
 ```js
@@ -740,6 +751,8 @@ function bt4Ch(){
 {{< p5-iframe sketch="/VisualComputing/sketches/workshop1/2/imageHist.js" lib1="/VisualComputing/sketches/workshop1/2/histogram.js"  width="725" height="675" >}}
 
 
+
+## Bibliografía
 
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat

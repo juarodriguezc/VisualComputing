@@ -1,6 +1,6 @@
-# Illusions 
+# Illusiones ópticas 
 
-Las asdasjdaskd nknskdjankdjnaksdja sdka dkajd akjdanksdjanksdj
+Incluir teoría acerca de las ilusiones opticas
 
 
 ## Stepping feet Motion Illusion
@@ -169,9 +169,10 @@ function guideEvent(){
 {{< /details >}}
 
 
-
-
 {{< p5-iframe sketch="/VisualComputing/sketches/workshop1/1/stepfeet.js" width="725" height="500" >}}
+
+### Explicación
+
 
 
 ## Müller-Lyer Illusion
@@ -238,4 +239,7 @@ function toggleResult(){
 
 {{< p5-iframe sketch="/VisualComputing/sketches/workshop1/1/mullerlyer.js" width="725" height="325" >}}
 
+### Explicación
 
+
+## Bibliografía
