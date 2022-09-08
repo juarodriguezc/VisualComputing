@@ -408,6 +408,10 @@ class Histogram {
 
 
 
-{{< p5-iframe sketch="/VisualComputing/sketches/workshop1/2/test2.js" lib1="/VisualComputing/sketches/workshop1/2/histogram.js"  width="725" height="500" >}}
+{{< p5-iframe sketch="/VisualComputing/sketches/workshop1/2/imageHist.js" lib1="/VisualComputing/sketches/workshop1/2/histogram.js"  width="725" height="675" >}}
 
-{{< p5-iframe sketch="/VisualComputing/sketches/illusions/2/test.js" width="725" height="500" >}}
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+
