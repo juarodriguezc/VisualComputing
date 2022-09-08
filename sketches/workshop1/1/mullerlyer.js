@@ -40,7 +40,7 @@ function draw() {
   point(originX, height/2);
   
   if(showResult){
-    strokeWeight(7);
+    strokeWeight(3);
     stroke(0, 255, 0);
     let sizeResult = 5;
     line(width/2, height/2-sizeResult, width/2, height/2+sizeResult);
