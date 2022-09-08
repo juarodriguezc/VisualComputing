@@ -1,6 +1,4 @@
-# Illusions 
-
-
+# Illusiones ópticas 
 
 ## Stepping feet Motion Illusion
 
@@ -177,11 +175,12 @@ function guideEvent(){
 {{< /details >}}
 
 
-
-
 {{< p5-iframe sketch="/VisualComputing/sketches/workshop1/1/stepfeet.js" width="725" height="500" >}}
 
-## Teoría Müller-Lyer Illusion
+
+
+## Müller-Lyer Illusion
+### Teoría 
 Esta es una ilusión óptica que ubicar el centro de la linea horizontal arrastrando la "flecha del medio". Está contemplado dentro del campo de *Consistencia de Tamaño*.
 Tienes este nombre pues fue descubierta por Muller-Lyer en 1889. Se atribulle su comportamiento pues la dirección de las flechas genera una perspectiva de amplitud o de encapsulamiento que engaña fácilemente a nuestro ojo.
 Para más referencias puede consultar a:
@@ -253,3 +252,11 @@ function toggleResult(){
 {{< p5-iframe sketch="/VisualComputing/sketches/workshop1/1/mullerlyer.js" width="725" height="325" >}}
 
 
+## Bibliografía
+- [Michelle Bach feet](https://michaelbach.de/ot/mot-feetLin/)
+- [Michelle Bach Müller](https://michaelbach.de/ot/sze-muelue/index.html)
+- [Müller-Lyer FC](http://www.psy.ritsumei.ac.jp/~akitaoka/ML1889Fe.html)
+- [Decrement of Visual and Haptic Müller-lyer Illusion on Repeated Trials: A Study of Crossmodal Transfer](https://journals.sagepub.com/doi/10.1080/17470216308416563)
+- [A review of the footsteps illusion](https://journalofillusion.net/index.php/joi/article/view/5612)
+- [Moving objects appear to slow down at low contrasts.](http://anstislab.ucsd.edu)
+- [Perceived rate of movement depends on contrast](https://www.sciencedirect.com/science/article/abs/pii/0042698982901535)
