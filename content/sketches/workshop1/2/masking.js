@@ -1,6 +1,5 @@
 let path = "/VisualComputing/sketches/workshop1/2/";
 
-
 //Global variables
 let dWidth;
 
@@ -14,11 +13,11 @@ let selKernel = kernels.sobelo;
 
 let imagesPath = {
   mandrill: [0, path+"img/mandrill.png"],
-  sunset: [1, path+"/img/sunset.jpg"],
-  mandrill2: [2, path+"img/mandrill.png"],
+  sunset: [1, path+"img/sunset.jpg"],
+  landscape: [2, path+"img/landscape.jpg"],
+  astronaut: [3, path+"img/astronaut.jpg"],
 }
   
-
   
 let selImage = imagesPath.mandrill;
 let img;
@@ -34,6 +33,7 @@ let selectImg;
 let btApply;
 let imgInput;
 
+let cImgLoad = -1;
 
 function setup() {
   createCanvas(705, 650);
@@ -55,13 +55,15 @@ function setup() {
 function draw() {
   background("#EEE");
   if (img) {
+    if(img.width != 0 && img.height != 0 && cImgLoad == 0){
+      aspectRatio = img.width / img.height;
+      cImgLoad++;
+    }
     //img.resize(0, (height-50) / 2);
     image(img,dWidth / 2, 5 * height /20, ((height-50) / 2) * aspectRatio, (height-50) / 2);
     image(img,dWidth / 2, 15 * height /20, ((height-50) / 2) * aspectRatio, (height-50) / 2);
   }
-  
   drawMenu("#6674C8");
-  
 }
 
 
@@ -101,7 +103,8 @@ function drawMenuInputs(){
     selectImg.option(image);
   selectImg.position(dWidth + 14, 380);
   selectImg.changed(imageSelEvent);
-  
+  selectImg.option("Personalizada");
+  selectImg.disable("Personalizada");
   
   
   
@@ -161,14 +164,17 @@ function imageSelEvent(){
   selImage = imagesPath[selectImg.value()];
   img = images[selImage[0]];
   aspectRatio = img.width / img.height;
+  cImgLoad = -1;
 }
 
 function handleFile(file) {
   if (file.type === 'image') {
     img = (createImg(file.data, ''));
     img.hide();
-    aspectRatio = isNaN(img.width / img.height)?2:img.width / img.height;
-        
+    cImgLoad = 0;
+    
+    selectImg.selected("Personalizada");
+    
   } else {
     img = null;
   }
