@@ -21,7 +21,6 @@ let data = [
 function setup() {
   createCanvas(500, 500);
   
-  
   input_val = createFileInput(handleFile);
   input_val.position(0, 600);
   histogram = new Histogram(data,10,100, 1, colors, undefined, 400, 300);

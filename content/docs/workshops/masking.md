@@ -170,7 +170,7 @@ function guideEvent(){
 
 
 
-{{< p5-iframe sketch="/VisualComputing/sketches/workshop1/2/masking.js" width="725" height="500" >}}
+{{< p5-iframe sketch="/VisualComputing/sketches/workshop1/2/masking.js" width="725" height="675" >}}
 
 
 ## Image Histogram
