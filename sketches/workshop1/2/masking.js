@@ -13,19 +13,30 @@ let selKernel = kernels.sobelo;
 
 
 //Menu variables
-let mWidth = 130;
+let mWidth;
 let input;
 let kernelInp = new Array(9);
 let selectKernel;
+let btApply;
 
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(705, 475);
+
+  mWidth = width * 1/5;
   dWidth = width - mWidth;
   
+  //Input para cargar la imagen
   input = createFileInput(handleFile);
   input.position(0, 0);
   input.size(200,200);
+  input.style("textAlign: center; flex-direction: row;")
+
+  //Botón para aplicar el filtro
+  btApply = createButton('Aplicar');
+  btApply.position(dWidth + 25, 250);
+  btApply.style("textAlign: center; width:100px;");
+  btApply.mousePressed(handleApply);
   
   drawMenuInputs();
   
@@ -51,15 +62,15 @@ function drawMenuInputs(){
       kernelInp[3*i+j] = createInput(val);
       kernelInp[3*i+j].style("textAlign: center;")
       kernelInp[3*i+j].size(20,20);
-      kernelInp[3*i+j].position(dWidth + (j * 40) + 10, 60 +i*40);
+      kernelInp[3*i+j].position(dWidth + 15 + (j * 40) + 10, 60 +i*40);
     }
   }
   //Kernel selector
   selectKernel = createSelect();
-  selectKernel.style("width:100px; textAlign: center;")
+  selectKernel.style("width:120px; textAlign: center;")
   for(var ker in kernels)
     selectKernel.option(ker);
-  selectKernel.position(dWidth + 15, 210);
+  selectKernel.position(dWidth + 20, 210);
   selectKernel.changed(kernelSelEvent);
   
 }
@@ -99,6 +110,7 @@ function kernelSelEvent(){
   updateKernel();
   
 }
+
 function handleFile(file) {
   print(file);
   if (file.type === 'image') {
@@ -107,4 +119,8 @@ function handleFile(file) {
   } else {
     img = null;
   }
+}
+
+function handleApply(){
+  
 }
