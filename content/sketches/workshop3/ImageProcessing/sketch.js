@@ -4,13 +4,15 @@ let video_src;
 let video_on;
 let mask;
 
+let path = '/VisualComputing/sketches/workshop3/ImageProcessing'
+
 function preload() {
-  video_src = createVideo(['./img/video.mp4']);
+  video_src = createVideo([path+'/img/video.mp4']);
   video_src.hide(); // by default video shows up in separate dom
-  maskShader = readShader('./mask.frag', { varyings: Tree.texcoords2 });
+  maskShader = readShader(path+'/mask.frag', { varyings: Tree.texcoords2 });
   //img = loadImage('/sketches/shaders/tree.jpeg');
   //img = loadImage('./img/lupin.png');
-  img = loadImage('./img/cuy.webp');
+  img = loadImage(path+'/img/cuy.webp');
   //img = loadImage('/sketches/shaders/acacias.jpeg');
   //img = loadImage('/sketches/shaders/honda.jpg');
   //img = loadImage('/sketches/shaders/v.jpg');
