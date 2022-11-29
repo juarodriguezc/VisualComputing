@@ -3,12 +3,14 @@ let truchetShader;
 let img;
 let lastMouse = 0;
 
+path = '/VisualComputing/sketches/workshop3/ProceduralTexturing'
+
 function preload() {
   // shader adapted from here: https://thebookofshaders.com/09/
-  truchetShader = readShader('./truchet.frag',
+  truchetShader = readShader(path+'/truchet.frag',
                              { matrices: Tree.NONE, varyings: Tree.NONE });
 
-  img = loadImage('./img/scotish.jpg');
+  img = loadImage(path+'/img/scotish.jpg');
 }
 
 function setup() {
