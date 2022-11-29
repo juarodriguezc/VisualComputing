@@ -2,6 +2,26 @@
 
 ## Image processing
 
+Una de las tareas más comunes e importantes dentro de la computación es el procesamiento de imágenes.
+Hoy en día tiene importantes aplicaciones en diferentes campos como Machine Learning, teniendo en cuenta que sirve para darle *ojos* a las computadoras. Tiene varias [aplicaciones](https://neptune.ai/blog/what-image-processing-techniques-are-actually-used-in-the-ml-industry#:~:text=Image%20Processing%20techniques%20used%20in%20the%20ML%20industry&text=Image%20Processing%20systems%20focus%20on,systems%20employ%20Image%20Processing%20algorithms.):
+- Imágenes médicas
+- Seguridad (cámaras)
+- Fuerzas militares y defensas
+- Restauración de imágenes
+
+A continuación presentamos un ejemplo de procesamiento de imágenes donde presentamos una **imagen** y un **video** al que se le aplican unos shaders para que el procesamiento sea bastante más rápido.
+
+Esto es una forma de aprovechar la GPU y permitir hacer las operaciones mas eficientemente.
+
+
+
+
+Una forma de observar cómo mejora el **rendimiento** de estos procesos, es ver el ejemplo del video, donde se observa que no le cuesta mucho al computador hacer el procesamiento.
+
+Aquí se implementó principalmente el kernel Prewitt enfocado en Gx
+
+![prewitt](https://user-images.githubusercontent.com/38956777/204561447-bb6067f7-d4b0-4448-8b91-292de5c5a9cf.png)
+
 
 
 
