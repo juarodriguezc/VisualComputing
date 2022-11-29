@@ -18,6 +18,8 @@
 
 {{<p5-iframe sketch="/VisualComputing/sketches/workshop3/nonEuclidian2/sketch.js" lib1="https://freshfork.github.io/p5.EasyCam/p5.easycam.js" lib2="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="425" height="425" >}}
 
+{{<p5-iframe sketch="/VisualComputing/sketches/workshop3/nonEuclidian3/sketch.js" lib1="https://freshfork.github.io/p5.EasyCam/p5.easycam.js" lib2="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="425" height="425" >}}
+
 
 ## Bibliografía
 - [Multiple Hands Detection in p5.js, Kazuki Umeda YouTube](https://michaelbach.de/ot/mot-feetLin/](https://www.youtube.com/watch?v=BX8ibqq0MJU)
