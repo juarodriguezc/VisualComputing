@@ -4,7 +4,13 @@
 
 
 
+Este trabajo se realizó sacando como base la información expuesta en [The book of shaders](https://thebookofshaders.com/09/).
+La idea de este ejercicio es mostrar cómo se puede aplicar una textura a un cuerpo (en este caso un cilindro) con shaders.
 
+Lo interesante es que se puede *jugar* con un **patrón** para *rellenar* el objeto y esto genera texturas muy interesantes.
+
+![this is image](../../../sketches/workshop3/ProceduralTexturing/img/scotish.jpg)
+![teselado](https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Tiling_Regular_6-3_Hexagonal.svg/560px-Tiling_Regular_6-3_Hexagonal.svg.png)
 
 {{< details "sketch.js" >}}
 ```js
