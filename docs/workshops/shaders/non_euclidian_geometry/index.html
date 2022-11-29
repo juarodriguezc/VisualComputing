@@ -1,11 +1,127 @@
-<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" Shaders # Non Euclidian Geometry # Código fuente Bibliografía # [Multiple Hands Detection in p5.js, Kazuki Umeda YouTube](https://michaelbach.de/ot/mot-feetLin/](https://www.youtube.com/watch?v=BX8ibqq0MJU) [Multiple Hands Detection in p5.js, Kazuki Umeda Repo ML5 Reference Visual Computing Course Page "><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content=" Shaders # Non Euclidian Geometry # Código fuente Bibliografía # [Multiple Hands Detection in p5.js, Kazuki Umeda YouTube](https://michaelbach.de/ot/mot-feetLin/](https://www.youtube.com/watch?v=BX8ibqq0MJU) [Multiple Hands Detection in p5.js, Kazuki Umeda Repo ML5 Reference Visual Computing Course Page "><meta property="og:type" content="article"><meta property="og:url" content="https://juarodriguezc.github.io/VisualComputing/docs/workshops/shaders/non_euclidian_geometry/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-11-29T06:16:56-05:00"><title>Non Euclidian Geometry | Visual Computing</title><link rel=manifest href=/VisualComputing/manifest.json><link rel=icon href=/VisualComputing/favicon.png type=image/x-icon><link rel=stylesheet href=/VisualComputing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/VisualComputing/flexsearch.min.js></script>
-<script defer src=/VisualComputing/en.search.min.8b56fcd2f1d57a7d188623404de586d8770dee1c327a62a8ada2c15ab2149e0e.js integrity="sha256-i1b80vHVen0YhiNATeWG2HcN7hwyemKoraLBWrIUng4=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Shaders # Non Euclidian Geometry # Ejemplo del profesor # sketch.js let easycam; let edge = 80; let scooter; let scooterTex; let amogus; let amogusTex; let texShader; let path = '/VisualComputing/sketches/workshop3/nonEuclidian1' function preload() { // no varyings need to be emitted from the vertex shader texShader = readShader(path+'/shader.frag', { varyings: Tree.NONE }); amogus = loadModel(path+'/models/amogus.obj', true); scooter = loadModel(path+'/models/scooter.obj', true); } function setup() { createCanvas(400, 400, WEBGL); // no need to normalize the texture // textureMode(NORMAL); shader(texShader); // resolution will be used to sample the offscreen textures emitResolution(texShader); easycam = createEasyCam(); scooterTex = createGraphics(width, height, WEBGL); amogusTex = createGraphics(width, height, WEBGL); } function draw() { // 1."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Shaders # Non Euclidian Geometry # Ejemplo del profesor # sketch.js let easycam; let edge = 80; let scooter; let scooterTex; let amogus; let amogusTex; let texShader; let path = '/VisualComputing/sketches/workshop3/nonEuclidian1' function preload() { // no varyings need to be emitted from the vertex shader texShader = readShader(path+'/shader.frag', { varyings: Tree.NONE }); amogus = loadModel(path+'/models/amogus.obj', true); scooter = loadModel(path+'/models/scooter.obj', true); } function setup() { createCanvas(400, 400, WEBGL); // no need to normalize the texture // textureMode(NORMAL); shader(texShader); // resolution will be used to sample the offscreen textures emitResolution(texShader); easycam = createEasyCam(); scooterTex = createGraphics(width, height, WEBGL); amogusTex = createGraphics(width, height, WEBGL); } function draw() { // 1."><meta property="og:type" content="article"><meta property="og:url" content="https://juarodriguezc.github.io/VisualComputing/docs/workshops/shaders/non_euclidian_geometry/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-11-29T06:44:43-05:00"><title>Non Euclidian Geometry | Visual Computing</title><link rel=manifest href=/VisualComputing/manifest.json><link rel=icon href=/VisualComputing/favicon.png type=image/x-icon><link rel=stylesheet href=/VisualComputing/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/VisualComputing/flexsearch.min.js></script>
+<script defer src=/VisualComputing/en.search.min.d056e36dd7c61b7df28e634d44107643bd1aeb1a109352827a21e756a77c3f0d.js integrity="sha256-0FbjbdfGG33yjmNNRBB2Q70a6xoQk1KCeiHnVqd8Pw0=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/VisualComputing/><span>Visual Computing</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Workshops</span><ul><li><a href=/VisualComputing/docs/workshops/coordinate_spaces/>Coordinate Spaces</a></li><li><a href=/VisualComputing/docs/workshops/masking/>Masking</a></li><li><a href=/VisualComputing/docs/workshops/optical_illusions/>Optical Illusions</a></li><li><input type=checkbox id=section-b8f03b9a412375dbf9d4841fd6e4e9a3 class=toggle checked>
 <label for=section-b8f03b9a412375dbf9d4841fd6e4e9a3 class="flex justify-between"><a href=/VisualComputing/docs/workshops/shaders/>Shaders</a></label><ul><li><a href=/VisualComputing/docs/workshops/shaders/coloring/>Coloring</a></li><li><a href=/VisualComputing/docs/workshops/shaders/image_processing/>Image Processing</a></li><li><a href=/VisualComputing/docs/workshops/shaders/non_euclidian_geometry/ class=active>Non Euclidian Geometry</a></li><li><a href=/VisualComputing/docs/workshops/shaders/procedural_texturing/>Procedural Texturing</a></li></ul></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/VisualComputing/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>Non Euclidian Geometry</strong>
-<label for=toc-control><img src=/VisualComputing/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#shaders>Shaders</a><ul><li><a href=#non-euclidian-geometry>Non Euclidian Geometry</a></li><li><a href=#bibliografía>Bibliografía</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=shaders>Shaders
+<label for=toc-control><img src=/VisualComputing/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#shaders>Shaders</a><ul><li><a href=#non-euclidian-geometry>Non Euclidian Geometry</a><ul><li><a href=#ejemplo-del-profesor>Ejemplo del profesor</a></li><li><a href=#cubo-completo>Cubo completo</a></li><li><a href=#tetraedro>Tetraedro</a></li></ul></li><li><a href=#bibliografía>Bibliografía</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=shaders>Shaders
 <a class=anchor href=#shaders>#</a></h1><h2 id=non-euclidian-geometry>Non Euclidian Geometry
-<a class=anchor href=#non-euclidian-geometry>#</a></h2><details><summary>Código fuente</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js></code></pre></div></div></details><iframe id=sketch style=width:425px;height:425px srcdoc="
+<a class=anchor href=#non-euclidian-geometry>#</a></h2><h3 id=ejemplo-del-profesor>Ejemplo del profesor
+<a class=anchor href=#ejemplo-del-profesor>#</a></h3><details><summary>sketch.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>easycam</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>edge</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>80</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>scooter</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>scooterTex</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogus</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogusTex</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>texShader</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;/VisualComputing/sketches/workshop3/nonEuclidian1&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// no varyings need to be emitted from the vertex shader
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/shader.frag&#39;</span>,
+</span></span><span style=display:flex><span>                         { <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>NONE</span> });
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogus</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadModel</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/models/amogus.obj&#39;</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooter</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadModel</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/models/scooter.obj&#39;</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>400</span>, <span style=color:#ae81ff>400</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// no need to normalize the texture
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// textureMode(NORMAL);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>texShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// resolution will be used to sample the offscreen textures
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>emitResolution</span>(<span style=color:#a6e22e>texShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>easycam</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createEasyCam</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 1. compute current main canvas camera params
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>position</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>treeLocation</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>center</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>p5</span>.<span style=color:#a6e22e>Vector</span>.<span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>position</span>, <span style=color:#a6e22e>treeDisplacement</span>());
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>up</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>treeDisplacement</span>(<span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>j</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// in case the current camera projection params are needed check:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// https://github.com/VisualComputing/p5.treegl#frustum-queries
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// 2. offscreen rendering
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// bunny graphics
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span> , <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;red&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// most models use positive y-coordinates
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>rotateY</span>(<span style=color:#a6e22e>frameCount</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>0.03</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>scooter</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// teapot graphics
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;blue&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>amogus</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 3. main canvas
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// front (+z)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>stroke</span>(<span style=color:#e6db74>&#39;purple&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>strokeWeight</span>(<span style=color:#ae81ff>5</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>amogusTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// right (+x)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>scooterTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><details><summary>shader.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>sampler2D</span> <span style=color:#a6e22e>texture</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>u_resolution</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>st</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>gl_FragCoord</span>.<span style=color:#a6e22e>xy</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>u_resolution</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>vec2</span>(<span style=color:#a6e22e>st</span>.<span style=color:#a6e22e>s</span>, <span style=color:#ae81ff>1.0</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>st</span>.<span style=color:#a6e22e>t</span>));
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><iframe id=sketch style=width:425px;height:425px srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
@@ -21,8 +137,256 @@
           <body>
           </body>
         </html>
-      "></iframe>
-<iframe id=sketch style=width:425px;height:425px srcdoc="
+      "></iframe><h3 id=cubo-completo>Cubo completo
+<a class=anchor href=#cubo-completo>#</a></h3><details><summary>sketch.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;/VisualComputing/sketches/workshop3/nonEuclidian2&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>easycam</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>edge</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>80</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Create model for each face
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>scooter</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>scooterRTex</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>scooterGTex</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogus</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogusBTex</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogusYTex</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cow</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cowOTex</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cowPTex</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>texShader</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// no varyings need to be emitted from the vertex shader
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/shader.frag&#39;</span>,
+</span></span><span style=display:flex><span>                         { <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>NONE</span> });
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooter</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadModel</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/models/scooter.obj&#39;</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogus</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadModel</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/models/amogus.obj&#39;</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cow</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadModel</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/models/cow.obj&#39;</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>400</span>, <span style=color:#ae81ff>400</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// no need to normalize the texture
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// textureMode(NORMAL);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>texShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// resolution will be used to sample the offscreen textures
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>emitResolution</span>(<span style=color:#a6e22e>texShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>easycam</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createEasyCam</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 1. compute current main canvas camera params
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>position</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>treeLocation</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>center</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>p5</span>.<span style=color:#a6e22e>Vector</span>.<span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>position</span>, <span style=color:#a6e22e>treeDisplacement</span>());
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>up</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>treeDisplacement</span>(<span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>j</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// in case the current camera projection params are needed check:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// https://github.com/VisualComputing/p5.treegl#frustum-queries
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// 2. offscreen rendering
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// bunny graphics
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Red scooter
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span> , <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>noStroke</span>(); 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;red&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// most models use positive y-coordinates
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>rotateY</span>(<span style=color:#a6e22e>frameCount</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>0.03</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>scooter</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterRTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Green scooter
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span> , <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                  <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>noStroke</span>(); 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;green&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// most models use positive y-coordinates
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>rotateY</span>(<span style=color:#a6e22e>frameCount</span> <span style=color:#f92672>*</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>0.05</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>scooter</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>scooterGTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Blue amogus
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;blue&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>amogus</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Blue amogus
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;yellow&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>amogus</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Orange cow
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;orange&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>rotateY</span>(<span style=color:#a6e22e>frameCount</span> <span style=color:#f92672>*</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>0.008</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>cow</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>   <span style=color:#75715e>// Purkple cow
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;purple&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>cow</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 3. main canvas
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>stroke</span>(<span style=color:#e6db74>&#39;purple&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>strokeWeight</span>(<span style=color:#ae81ff>5</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// front (+z)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>scooterRTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// front (-z)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>scooterGTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// right (+x)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>amogusYTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// left (-x)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>amogusBTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// bottom (-y)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>cowOTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// bottom (+y)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>cowPTex</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>, <span style=color:#f92672>+</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><details><summary>shader.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>sampler2D</span> <span style=color:#a6e22e>texture</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>u_resolution</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>st</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>gl_FragCoord</span>.<span style=color:#a6e22e>xy</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>u_resolution</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>vec2</span>(<span style=color:#a6e22e>st</span>.<span style=color:#a6e22e>s</span>, <span style=color:#ae81ff>1.0</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>st</span>.<span style=color:#a6e22e>t</span>));
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><iframe id=sketch style=width:425px;height:425px srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
@@ -38,8 +402,187 @@
           <body>
           </body>
         </html>
-      "></iframe>
-<iframe id=sketch style=width:425px;height:425px srcdoc="
+      "></iframe><h3 id=tetraedro>Tetraedro
+<a class=anchor href=#tetraedro>#</a></h3><details><summary>sketch.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;/VisualComputing/sketches/workshop3/nonEuclidian3&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>easycam</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>edge</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>150</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogus</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogusBTex</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>amogusYTex</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cow</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cowOTex</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cowPTex</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>texShader</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// no varyings need to be emitted from the vertex shader
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/shader.frag&#39;</span>,
+</span></span><span style=display:flex><span>                         { <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>NONE</span> });
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogus</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadModel</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/models/amogus.obj&#39;</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cow</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadModel</span>(<span style=color:#a6e22e>path</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#39;/models/cow.obj&#39;</span>, <span style=color:#66d9ef>true</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>400</span>, <span style=color:#ae81ff>400</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// no need to normalize the texture
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// textureMode(NORMAL);
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>texShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// resolution will be used to sample the offscreen textures
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>emitResolution</span>(<span style=color:#a6e22e>texShader</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>easycam</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createEasyCam</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 1. compute current main canvas camera params
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>position</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>treeLocation</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>center</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>p5</span>.<span style=color:#a6e22e>Vector</span>.<span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>position</span>, <span style=color:#a6e22e>treeDisplacement</span>());
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>up</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>treeDisplacement</span>(<span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>j</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// in case the current camera projection params are needed check:
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// https://github.com/VisualComputing/p5.treegl#frustum-queries
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// 2. offscreen rendering
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Blue amogus
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;blue&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>amogus</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusBTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Blue amogus
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;yellow&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>0.7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>amogus</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>amogusYTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// Orange cow
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;orange&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1.2</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>cow</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowOTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>   <span style=color:#75715e>// Purkple cow
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>reset</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>camera</span>(<span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>position</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>center</span>.<span style=color:#a6e22e>z</span>,
+</span></span><span style=display:flex><span>                   <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>up</span>.<span style=color:#a6e22e>z</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>noStroke</span>();
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>fill</span>(<span style=color:#e6db74>&#39;purple&#39;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>scale</span>(<span style=color:#ae81ff>1.2</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>model</span>(<span style=color:#a6e22e>cow</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>cowPTex</span>.<span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// 3. main canvas
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>background</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>push</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>stroke</span>(<span style=color:#66d9ef>int</span>(<span style=color:#a6e22e>random</span>(<span style=color:#ae81ff>80</span>, <span style=color:#ae81ff>200</span>)), <span style=color:#66d9ef>int</span>(<span style=color:#a6e22e>random</span>(<span style=color:#ae81ff>80</span>, <span style=color:#ae81ff>200</span>)), <span style=color:#66d9ef>int</span>(<span style=color:#a6e22e>random</span>(<span style=color:#ae81ff>80</span>, <span style=color:#ae81ff>200</span>)));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>strokeWeight</span>(<span style=color:#ae81ff>5</span>);
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//Bottom
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>cowOTex</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>(<span style=color:#a6e22e>TRIANGLES</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>cowPTex</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//Front
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>beginShape</span>(<span style=color:#a6e22e>TRIANGLES</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>amogusBTex</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//Right
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>beginShape</span>(<span style=color:#a6e22e>TRIANGLES</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#75715e>//Left
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>texShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>amogusYTex</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>beginShape</span>(<span style=color:#a6e22e>TRIANGLES</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>, <span style=color:#a6e22e>edge</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vertex</span>(<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#a6e22e>edge</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>endShape</span>(<span style=color:#a6e22e>CLOSE</span>);
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>pop</span>();
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><details><summary>shader.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>sampler2D</span> <span style=color:#a6e22e>texture</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>u_resolution</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>st</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>gl_FragCoord</span>.<span style=color:#a6e22e>xy</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>u_resolution</span>;
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>vec2</span>(<span style=color:#a6e22e>st</span>.<span style=color:#a6e22e>s</span>, <span style=color:#ae81ff>1.0</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>st</span>.<span style=color:#a6e22e>t</span>));
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details><iframe id=sketch style=width:425px;height:425px srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
@@ -56,6 +599,5 @@
           </body>
         </html>
       "></iframe><h2 id=bibliografía>Bibliografía
-<a class=anchor href=#bibliograf%c3%ada>#</a></h2><ul><li>[Multiple Hands Detection in p5.js, Kazuki Umeda YouTube](<a href="https://michaelbach.de/ot/mot-feetLin/]%28https://www.youtube.com/watch?v=BX8ibqq0MJU%29">https://michaelbach.de/ot/mot-feetLin/](https://www.youtube.com/watch?v=BX8ibqq0MJU)</a>
-[<a href=https://github.com/Creativeguru97/YouTube_tutorial/tree/master/Play_with_APIs/hand_detection/ml5_handpose>Multiple Hands Detection in p5.js, Kazuki Umeda Repo</a></li><li><a href=https://learn.ml5js.org/#/reference/index>ML5 Reference</a></li><li><a href=https://visualcomputing.github.io/>Visual Computing Course Page</a></li></ul></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/eb654bcc27c33a1e2f1c6aed0555940f07239c57 title='Last modified by juarodriguezc | November 29, 2022' target=_blank rel=noopener><img src=/VisualComputing/svg/calendar.svg class=book-icon alt=Calendar>
-<span>November 29, 2022</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#shaders>Shaders</a><ul><li><a href=#non-euclidian-geometry>Non Euclidian Geometry</a></li><li><a href=#bibliografía>Bibliografía</a></li></ul></li></ul></nav></div></aside></main></body></html>
+<a class=anchor href=#bibliograf%c3%ada>#</a></h2><ul><li><a href=https://visualcomputing.github.io/>Visual Computing Course Page</a></li></ul></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/586abde4910c45126f2f7809bab6c37ade220689 title='Last modified by juarodriguezc | November 29, 2022' target=_blank rel=noopener><img src=/VisualComputing/svg/calendar.svg class=book-icon alt=Calendar>
+<span>November 29, 2022</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#shaders>Shaders</a><ul><li><a href=#non-euclidian-geometry>Non Euclidian Geometry</a><ul><li><a href=#ejemplo-del-profesor>Ejemplo del profesor</a></li><li><a href=#cubo-completo>Cubo completo</a></li><li><a href=#tetraedro>Tetraedro</a></li></ul></li><li><a href=#bibliografía>Bibliografía</a></li></ul></li></ul></nav></div></aside></main></body></html>
