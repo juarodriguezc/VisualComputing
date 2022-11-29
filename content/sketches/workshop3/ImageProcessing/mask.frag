@@ -36,6 +36,7 @@ void main() {
   rgba[7] = texture2D(texture, tc7);
   rgba[8] = texture2D(texture, tc8);
 
+
   // 3. Apply convolution kernel
   vec4 convolution;
   for (int i = 0; i < 9; i++) {
